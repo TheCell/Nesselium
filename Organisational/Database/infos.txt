@@ -1,0 +1,5 @@
+IP ADRESSES
+	http://stackoverflow.com/questions/2542011/most-efficient-way-to-store-ip-address-in-mysql
+	For IPv4 addresses, you may want to store them as an int unsigned and use the INET_ATON() and INET_NTOA() functions to return the IP address from its numeric value, and vice versa. 
+	Just when using IPV6 the functions are different ( INET6_ATON(ip) ). IPV4 needs VARBINARY(4) and IPV6 would need VARBINARY(16) (which of course works for V4 addresses as well). You can convert a V4 IP (INT) to a compatible format like this: INET6_ATON(INET_NTOA(ip))
+	for the ipv6 save in binary(16) use google
