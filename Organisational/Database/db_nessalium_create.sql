@@ -12,7 +12,7 @@ DROP SCHEMA IF EXISTS `db_nesselium` ;
 -- -----------------------------------------------------
 -- Schema db_nesselium
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `db_nesselium` DEFAULT CHARACTER SET utf16 ;
+CREATE SCHEMA IF NOT EXISTS `db_nesselium` DEFAULT CHARACTER SET utf8 ;
 USE `db_nesselium` ;
 
 -- -----------------------------------------------------
@@ -43,8 +43,8 @@ CREATE TABLE IF NOT EXISTS `db_nesselium`.`tbl_user` (
   `lastname` VARCHAR(120) NULL,
   `birthday` DATE NULL,
   `lastLogin` DATETIME NULL,
-  `ipAdressV4` INT UNSIGNED NULL DEFAULT 0,
-  `ipAdressV6` BINARY(16) NULL DEFAULT 0,
+  `ipAddressV4` INT UNSIGNED NULL DEFAULT 0,
+  `ipAddressV6` VARBINARY(39) NULL DEFAULT 0,
   `FK_usertype` INT NOT NULL DEFAULT 6,
   PRIMARY KEY (`PK_user`),
   INDEX `fk_tbl_user_tbl_userType1_idx` (`FK_usertype` ASC),
@@ -65,7 +65,8 @@ CREATE TABLE IF NOT EXISTS `db_nesselium`.`tbl_loginAttempt` (
   `PK_loginDate` INT NOT NULL AUTO_INCREMENT,
   `isSuccessfull` TINYINT(1) NULL,
   `loginTime` DATETIME NULL,
-  `ipAdress` VARCHAR(45) NULL,
+  `ipAddressV4` INT NULL DEFAULT 0,
+  `ipAddressV6` VARBINARY(39) NULL DEFAULT 0,
   `FK_user` INT NOT NULL,
   PRIMARY KEY (`PK_loginDate`),
   INDEX `fk_tbl_loginAttempt_tbl_user_idx` (`FK_user` ASC),
