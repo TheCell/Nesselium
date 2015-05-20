@@ -1,3 +1,10 @@
+Requirements for developing
+    Use OOP
+    Use CamelCase
+    Use PDO only
+    Use the corresponding Classes to write into the db, this is to make sure that you don't miss out on logentries etc.
+    This project should be valide as HTML5 Website at every time please check https://validator.w3.org/check after you made changes
+
 IP ADRESSES
 	http://stackoverflow.com/questions/2542011/most-efficient-way-to-store-ip-address-in-mysql
 	For IPv4 addresses, you may want to store them as an int unsigned and use the INET_ATON() and INET_NTOA() functions to return the IP address from its numeric value, and vice versa. 
