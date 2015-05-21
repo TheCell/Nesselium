@@ -5,6 +5,13 @@
     <title></title>
   </head>
   <body>
+      See <a href="https://www.mikemackintosh.com/5-tips-for-working-with-ipv6-in-php/">https://www.mikemackintosh.com/5-tips-for-working-with-ipv6-in-php/</a>
+      See <a href="http://test-ipv6.com/">http://test-ipv6.com/</a>
+      See <a href="http://programming.nullanswer.com/forum/3036346">http://programming.nullanswer.com/forum/3036346/</a>
+      See <a href="http://www.samclarke.com/2011/07/php-ipv6-to-128bit-int/">http://www.samclarke.com/2011/07/php-ipv6-to-128bit-int/</a>
+      See <a href="http://stackoverflow.com/questions/10085266/php5-calculate-ipv6-range-from-cidr-prefix">http://stackoverflow.com/questions/10085266/php5-calculate-ipv6-range-from-cidr-prefix/</a>
+      See <a href="http://stackoverflow.com/questions/12435582/php-serverremote-addr-shows-ipv6">http://stackoverflow.com/questions/12435582/php-serverremote-addr-shows-ipv6</a>
+      
       <?php
         // Our Example IP's
         $ip4= "10.22.99.129";

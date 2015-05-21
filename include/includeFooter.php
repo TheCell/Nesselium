@@ -1,6 +1,6 @@
 <?php
 
-require_once '/../layout/footer.html';
+require_once '../layout/footer.html';
 
 ?>
 </div> <!-- global content -->
