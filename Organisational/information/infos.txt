@@ -22,3 +22,13 @@ helpfull sources
 Localication
     https://gcc.gnu.org/onlinedocs/libstdc++/manual/localization.html
     we will use this list as locales
+
+Database Class
+    not sure about the insert function -> this will be slower then it would have to be. if you validate the string before insert we could simply let everyone insert into the db
+
+Time
+    times in DB are always in UTC!
+    Time examples
+        $nowUtc = new DateTime( 'now',  new DateTimeZone( 'UTC' ) );
+        $dateTime = $nowUtc->format('Y-m-d h:m:s');
+        $date = $nowUtc->format('Y-m-d');

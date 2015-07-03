@@ -14,41 +14,76 @@
     $stmt2 = "";
     $stmt3 = "";
 
-    // We have 3 Database connections, you should use the first one as much as possible
-    try
+    class Connection
     {
-        $pdo = new PDO("mysql:host=$servername;dbname=db_nesselium", $username, $password);
-        // set the PDO error mode to exception
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        // echo "Connected successfully";
-    }
-    catch(PDOException $e)
-    {
-        echo "Connection failed: " . $e->getMessage();
-    }
-    
-    try
-    {
-        $pdo2 = new PDO("mysql:host=$servername;dbname=db_nesselium", $username, $password);
-        // set the PDO error mode to exception
-        $pdo2->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        // echo "Connected successfully";
-    }
-    catch(PDOException $e)
-    {
-        echo "Connection failed: " . $e->getMessage();
+        protected function getConnection()
+        {
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+        
+            try
+            {
+                $pdo = new PDO("mysql:host=$servername;dbname=db_nesselium", $username, $password);
+                // set the PDO error mode to exception
+                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                // echo "Connected successfully";
+                return $pdo;
+            }
+            catch(PDOException $e)
+            {
+                echo "Connection failed: " . $e->getMessage();
+            }
+        }
     }
     
-    try
+    /**
+     * Maybe change this, no multi insert very slow
+     */
+    class Database extends Connection
     {
-        $pdo3 = new PDO("mysql:host=$servername;dbname=db_nesselium", $username, $password);
-        // set the PDO error mode to exception
-        $pdo3->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        // echo "Connected successfully";
-    }
-    catch(PDOException $e)
-    {
-        echo "Connection failed: " . $e->getMessage();
+        /**
+         * 
+         * @param type $sqlQueryString
+         * @param array $variables
+         * @return type
+         */
+        public function getInfo($sqlQueryString, array $variables = array())
+        {
+            //TODO
+            //check string for crossSiteScript
+            
+            $pdo = parent::getConnection();
+            $stmt = $pdo->prepare($sqlQueryString);
+            if (!empty($variables))
+            {
+                $stmt->execute($variables);
+            }
+            else
+            {
+                $stmt->execute();
+            }
+            
+            $resultArr = $stmt->fetchAll();
+            return $resultArr;
+        }
+        
+        public function writeInfo($sqlQueryString, array $variables = array())
+        {
+            //TODO
+            //check string for sqlinjection
+            
+            $pdo = parent::getConnection();
+            $stmt = $pdo->prepare($sqlQueryString);
+            if (!empty($variables))
+            {
+                $stmt->execute($variables);
+            }
+            else
+            {
+                $stmt->execute();
+            }
+        }
     }
     
     // TODO

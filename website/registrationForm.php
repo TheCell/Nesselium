@@ -2,7 +2,6 @@
 require_once '../include/dbConnect.php';
 
 $error_msg = "";
-    var_dump($_POST);
 
 if (isset($_POST['username'], $_POST['email'], $_POST['passwordHash']))
 {
@@ -29,8 +28,12 @@ if (isset($_POST['username'], $_POST['email'], $_POST['passwordHash']))
     }
     if (isset($_POST['birthdate']))
     {
-        echo $birthdate;
-        $birthdate = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_STRING);
+        $birthdate = filter_input(INPUT_POST, 'birthdate', FILTER_SANITIZE_STRING);
+        $birthdateUTC = new DateTime( $birthdate,  new DateTimeZone( 'UTC' ) );
+    }
+    if (isset($_POST['language']))
+    {
+        $language = filter_input(INPUT_POST, 'language', FILTER_SANITIZE_NUMBER_INT);
     }
     
     if (empty($error_msg)) {
@@ -41,7 +44,17 @@ if (isset($_POST['username'], $_POST['email'], $_POST['passwordHash']))
         $password = hash('sha512', $password . $random_salt);
  
         // Insert the new user into the database
-        // TODO via userobj
+        $db = new Database();
+        $nowUtc = new DateTime( 'now',  new DateTimeZone( 'UTC' ) );
+        $now = $nowUtc->format('Y-m-d h:m:s');
+        
+        $sqlString = 'INSERT INTO tblUser (username, email, password, salt, createTime, firstname, lastname, birthday, FK_language, FK_usertype) '
+                . 'VALUES (:username, :email, :password, :salt, :createTime, :firstname, :lastname, :birthday, :language, :usertype)';
+        $variables = array (':username' => $username, ':email' => $email, ':password' => $password,
+            ':salt' => $random_salt, ':createTime' => $now, ':firstname' => $firstname, ':lastname' => $lastname,
+            ':birthday' => $birthdateUTC->format('Y-m-d'), ':language' => $language , ':usertype' => 7);
+        
+        $db->writeInfo($sqlString, $variables);
         
         header('Location: registrationSuccess.php');
     }

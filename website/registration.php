@@ -30,6 +30,7 @@ if (isset($error_msg))
     <li>Your password and confirmation must match exactly</li>
 </ul>
 <?php
+
 /*
  * TODO: pattern Specifies a regular expression to check the input value against
  * it is possible to use regular expressions in html5 form
@@ -46,6 +47,7 @@ if (isset($error_msg))
     step 	Specifies the legal number intervals for an input field
     value 	Specifies the default value for an input field
  */
+
 ?>
 <form action="<?php echo esc_url($_SERVER['PHP_SELF']); ?>"
     method="post" 
@@ -64,7 +66,7 @@ if (isset($error_msg))
                     id='firstname' /><br />
     Lastname: <input type='text' name='lastname' id='lastname' /><br />
     Birthdate: <input type='date' name='birthdate' id='birthdate'
-                      placeholder='jjjj-mm-dd'>
+                      placeholder='dd-mm-jjjj'>
     Password*: <input type='password' 
                     name='password' 
                     id="password"
@@ -73,9 +75,22 @@ if (isset($error_msg))
                             name='confirmpwd' 
                             id='confirmpwd' 
                             required /><br />
-    Language: <input type='text'
-                     name='language'
-                     id='language' /><br />
+    Language: <select name="language"
+                      id="language">
+        <?php
+            $dbcon = new Database();
+            $sqlQueryString = "SELECT languageName, PK_language FROM tbllanguage";
+            $languages = $dbcon->getInfo($sqlQueryString);
+
+            if (isset($languages))
+            {
+                for ($i = 0; $i < sizeof($languages); $i++) 
+                {
+                    echo '<option value="' . $languages[$i]['PK_language'] . '">' . $languages[$i]['languageName'] . '</option>';
+                }
+            }
+        ?>
+    </select>
     <input type="button" 
         value="Register" 
         onclick="return regformhash(this.form,
@@ -85,7 +100,8 @@ if (isset($error_msg))
                     this.form.lastname,
                     this.form.birthdate,
                     this.form.password,
-                    this.form.confirmpwd);" /> 
+                    this.form.confirmpwd,
+                    this.form.language);" /> 
 </form>
 <p>Return to the <a href="index.php">login page</a>.</p>
 <?php

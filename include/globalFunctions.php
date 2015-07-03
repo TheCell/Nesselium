@@ -34,3 +34,8 @@ function esc_url($url)
         return $url;
     }
 }
+
+class Stringcleaner
+{
+    //todo string validate, sanitize etc.
+}
