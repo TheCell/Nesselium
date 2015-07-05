@@ -1,5 +1,5 @@
 <?php
-
+require_once 'dbConnect.php';
 
 function errorHandler($type, $message, $file, $row)
 {
@@ -14,29 +14,11 @@ function errorHandler($type, $message, $file, $row)
     $username = "erruser";
     $password = "";
     
-    try
-    {
-        $pdoErr = new PDO("mysql:host=$servername;dbname=db_nesselium", $username, $password);
-        // set the PDO error mode to exception
-        $pdoErr->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-         //echo "Connected successfully";
-    }
-    catch(PDOException $e)
-    {
-        echo "Connection failed: " . $e->getMessage();
-    }
+    $db = new Database();
+    $sqlQueryString = "INSERT INTO tblErrorlog (type, errormsg, file, row) VALUES (:type, :errormsg, :file, :row)";
+    $variables = array(':type' => $type, ':errormsg' => $message, ':file' => $file, ':row' => $row);
+    $db->writeError($sqlQueryString, $variables);
     
-    $stmtErr = $pdoErr->prepare("INSERT INTO tblErrorlog (type, errormsg, file, row)"
-            . " VALUES (:type, :errormsg, :file, :row)");
-    $stmtErr->execute(array(':type'=> $type, ':errormsg'=>$message,
-        ':file'=>$file, ':row'=>$row ));
-
-    $servername = "";
-    $username = "";
-    $password = "";
-    $stmtErr = null;
-    $pdoErr = null;
-
     // Execute PHP internal error handler
     return false;
 }

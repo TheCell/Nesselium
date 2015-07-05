@@ -1,6 +1,10 @@
 <?php
 require_once 'dbConnect.php';
 
+/*
+ *  outdated
+ */
+/*
 class User extends Connection
 {
     private $PK_user;
@@ -54,5 +58,5 @@ class User extends Connection
         echo 'usertype: ' . $this->usertype . '<br />';
         echo 'language: ' . $this->language . '<br />';
     }
-}
+}*/
 ?>

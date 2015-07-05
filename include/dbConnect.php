@@ -46,12 +46,53 @@
          * 
          * @param type $sqlQueryString
          * @param array $variables
-         * @return type
+         * @return array
          */
         public function getInfo($sqlQueryString, array $variables = array())
         {
             //TODO
             //check string for crossSiteScript
+            // create separate string validation file
+            
+            // no INSERT statements allowed
+            if (preg_match("/INSERT/", strtoupper($sqlQueryString)) != 0)
+            {
+                $backtrace = debug_backtrace();
+                errorHandler(2, "INSERT statement used in function getInfo by IP Adress: " . $_SERVER['REMOTE_ADDR'], $backtrace[0]['file'], $backtrace[0]['line']);
+                return -1;
+            }
+            else
+            {
+                if (preg_match("/SELECT/", strtoupper($sqlQueryString)) == 1)
+                {
+                    $pdo = parent::getConnection();
+                    $stmt = $pdo->prepare($sqlQueryString);
+                    if (!empty($variables))
+                    {
+                        $stmt->execute($variables);
+                    }
+                    else
+                    {
+                        $stmt->execute();
+                    }
+
+                    $resultArr = $stmt->fetchAll();
+                    return $resultArr;
+                }
+            }
+            
+        }
+        
+        /**
+         * 
+         * @param type $sqlQueryString
+         * @param array $variables
+         */
+        public function writeInfo($sqlQueryString, array $variables = array())
+        {
+            //TODO
+            //check string for sqlinjection
+            //only let loged in users use this
             
             $pdo = parent::getConnection();
             $stmt = $pdo->prepare($sqlQueryString);
@@ -63,16 +104,10 @@
             {
                 $stmt->execute();
             }
-            
-            $resultArr = $stmt->fetchAll();
-            return $resultArr;
         }
         
-        public function writeInfo($sqlQueryString, array $variables = array())
+        public function writeError($sqlQueryString, array $variables = array())
         {
-            //TODO
-            //check string for sqlinjection
-            
             $pdo = parent::getConnection();
             $stmt = $pdo->prepare($sqlQueryString);
             if (!empty($variables))
