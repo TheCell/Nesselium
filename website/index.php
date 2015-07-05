@@ -18,10 +18,10 @@ echo $db->writeInfo($sqlQueryString, $variables);
 */
 
 
-$validate = new Stringvalidator();
-$sqlQueryString = "SELECT text FROM tblArticle";
-$articles = $db->getInfo($sqlQueryString);
-echo $validate->cleanXSS($articles[1]['text']);
+//$validate = new Stringvalidator();
+//$sqlQueryString = "SELECT text FROM tblArticle";
+//$articles = $db->getInfo($sqlQueryString);
+//echo $validate->cleanXSS($articles[1]['text']);
 
 
 //$sqlQueryString = 'INSERT INTO tblCategory (name) VALUES (:categorynames);';
