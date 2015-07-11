@@ -1,11 +1,11 @@
 <?php
 // must be first statement
 require_once '../include/includeHeader.php';
-require_once '../include/Stringvalidator.php';
+//require_once '../include/Stringvalidator.php';
 
 echo 'index page';
 
-$db = new Database();
+//$db = new Database();
 
 //$sqlQueryString = 'INSERT INTO tblCategory (name) VALUES ("test2");';
 

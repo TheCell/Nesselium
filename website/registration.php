@@ -52,6 +52,8 @@ if (isset($error_msg))
 <form action="<?php echo esc_url($_SERVER['PHP_SELF']); ?>"
     method="post" 
     name="registration_form">
+    <fieldset>
+        <legend>Registration</legend>
     Username*: <input type='text'
                      name='username'
                      id='username' 
@@ -102,6 +104,7 @@ if (isset($error_msg))
                     this.form.password,
                     this.form.confirmpwd,
                     this.form.language);" /> 
+    </fieldset>
 </form>
 <p>Return to the <a href="index.php">login page</a>.</p>
 <?php
