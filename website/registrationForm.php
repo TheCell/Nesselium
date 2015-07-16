@@ -1,5 +1,5 @@
 <?php
-require_once '../include/dbConnect.php';
+require_once '../include/Database.class.php';
 
 $error_msg = "";
 

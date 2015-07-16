@@ -1,5 +1,5 @@
 <?php
-require_once 'dbConnect.php';
+require_once 'Database.class.php';
 
 function errorHandler($type, $message, $file, $row)
 {
