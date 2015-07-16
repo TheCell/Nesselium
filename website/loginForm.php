@@ -1,7 +1,7 @@
 <?php
 // must be first statement
 require_once '../include/includeHeader.php';
-require_once '../include/Stringvalidator.php';
+require_once '../include/Stringvalidator.class.php';
 
 
 if (isset($_POST['nameOrEmail']) && isset($_POST['password']))
