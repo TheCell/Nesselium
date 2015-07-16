@@ -65,7 +65,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `db_nesselium`;
-INSERT INTO `db_nesselium`.`tblLoginAttempt` (`PK_loginDate`, `isSuccessfull`, `loginTime`, `ipAddressV4`, `ipAddressV6`, `FK_user`) VALUES (1, 1, '2015-07-05 16:01:09', 123, NULL, 1);
+INSERT INTO `db_nesselium`.`tblLoginAttempt` (`PK_loginAttempt`, `isSuccessfull`, `loginTime`, `ipAddressV4`, `ipAddressV6`, `FK_user`) VALUES (1, 1, '2015-07-05 16:01:09', 123, NULL, 1);
 
 COMMIT;
 
