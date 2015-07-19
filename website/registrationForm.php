@@ -29,7 +29,12 @@ if (isset($_POST['username'], $_POST['email'], $_POST['passwordHash']))
     if (isset($_POST['birthdate']))
     {
         $birthdate = filter_input(INPUT_POST, 'birthdate', FILTER_SANITIZE_STRING);
-        $birthdateUTC = new DateTime( $birthdate,  new DateTimeZone( 'UTC' ) );
+        try
+        {
+            $birthdateUTC = new DateTime( $birthdate,  new DateTimeZone( 'UTC' ) );
+        } catch (Exception $ex) {
+            $birthdateUTC = new DateTime( 'NOW',  new DateTimeZone( 'UTC' ) );
+        }
     }
     if (isset($_POST['language']))
     {

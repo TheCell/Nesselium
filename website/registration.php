@@ -70,7 +70,7 @@ $stringvalidator = new Stringvalidator;
                     id='firstname' /><br />
     Lastname: <input type='text' name='lastname' id='lastname' /><br />
     Birthdate: <input type='date' name='birthdate' id='birthdate'
-                      placeholder='dd-mm-jjjj'>
+                      placeholder='dd.mm.jjjj'>
     Password*: <input type='password' 
                     name='password' 
                     id="password"
