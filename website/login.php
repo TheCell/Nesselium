@@ -36,6 +36,27 @@ function hashPW(form, nameOrEmail, password)
     </fieldset>
 </form>
 <?php
+
+if (isset($_GET['error']))
+{
+    switch ($_GET['error']) {
+        case 1:
+            echo "Login incorrect";
+            break;
+
+        case 2:
+            echo "No Password provided";
+            break;
+
+        case 3:
+            echo "No Username or Email provided";
+            break;
+
+        default:
+            break;
+    }
+}
+
 // must be last statement
 require_once '../include/includeFooter.php';
 ?>

@@ -48,8 +48,10 @@ if (isset($error_msg))
     value 	Specifies the default value for an input field
  */
 
+$stringvalidator = new Stringvalidator;
+
 ?>
-<form action="<?php echo esc_url($_SERVER['PHP_SELF']); ?>"
+<form action="<?php echo $stringvalidator->esc_url($_SERVER['PHP_SELF']); ?>"
     method="post" 
     name="registration_form">
     <fieldset>

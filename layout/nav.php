@@ -1,6 +1,7 @@
 <div class="nav">
     <?php
-    if (login_check())
+    $user = new User();
+    if ($user->login_check())
     {
     ?>
         <div class="userData">
@@ -22,9 +23,6 @@
             </li>
             <li class="menu-item">
                 <a href="login.php">Login</a>
-            </li>
-            <li class="menu-item">
-                <a href="logout.php">Logout</a>
             </li>
         </ul>
     </div>
