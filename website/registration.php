@@ -108,6 +108,15 @@ $stringvalidator = new Stringvalidator;
                     this.form.language);" /> 
     </fieldset>
 </form>
+<?php
+if (isset($_GET['error']))
+{
+    $stringvalidator = new Stringvalidator();
+    echo '<p class=error>';
+    echo $stringvalidator->cleanXSS($_GET['error']);
+    echo '</p>';
+}
+?>
 <p>Return to the <a href="index.php">login page</a>.</p>
 <?php
 require_once '../include/includeFooter.php';

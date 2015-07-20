@@ -11,3 +11,8 @@
     margin: 10px 0px 10px 0px;
     border: 1px solid brown;
 }
+
+p.error
+{
+    background-color: red;
+}

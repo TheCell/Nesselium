@@ -15,7 +15,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['passwordHash']))
     if (strlen($password) != 128) {
         // The hashed pwd should be 128 characters long.
         // If it's not, something really odd has happened
-        $error_msg .= '<p class="error">Invalid password configuration.</p>';
+        $error_msg .= 'Invalid password configuration.';
     }
     
     if (isset($_POST['firstname']))
@@ -62,6 +62,10 @@ if (isset($_POST['username'], $_POST['email'], $_POST['passwordHash']))
         $db->writeInfo($sqlString, $variables);
         
         header('Location: registrationSuccess.php');
+    }
+    else
+    {
+        header('Location: registration.php?error=' . $error_msg);
     }
     
 }

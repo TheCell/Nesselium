@@ -41,15 +41,21 @@ if (isset($_GET['error']))
 {
     switch ($_GET['error']) {
         case 1:
+            echo '<p class=error>';
             echo "Login incorrect";
+            echo '</p>';
             break;
 
         case 2:
+            echo '<p class=error>';
             echo "No Password provided";
+            echo '</p>';
             break;
 
         case 3:
+            echo '<p class=error>';
             echo "No Username or Email provided";
+            echo '</p>';
             break;
 
         default:
