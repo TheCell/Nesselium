@@ -2,11 +2,11 @@
 a new cms system
 
 ## Requirements for developing
-Use OOP
-Use CamelCase
-Use PDO only
-Use the corresponding Classes to write into the db, this is to make sure that you don't miss out on log entries etc.
-This project should be valide as HTML5 Website at every time please check https://validator.w3.org/nu/ and https://validator.w3.org/check after you made changes
+- Use OOP
+- Use CamelCase
+- Use PDO only
+- Use the corresponding Classes to write into the db, this is to make sure that you don't miss out on log entries etc.
+- This project should be valide as HTML5 Website at every time please check https://validator.w3.org/nu/ and https://validator.w3.org/check after you made changes
 
 ## Getting it to work
 to get this project up and running I reccomennd using xampp.
@@ -32,23 +32,27 @@ not sure about the insert function -> this will be slower then it would have to 
 ## Time
 times in DB are always in UTC!
 Time examples
+```PHP
 $nowUtc = new DateTime( 'now',  new DateTimeZone( 'UTC' ) );
 $dateTime = $nowUtc->format('Y-m-d h:m:s');
 $date = $nowUtc->format('Y-m-d');
+```
 
 ## Localstorage
 Use Localstorage (http://www.w3schools.com/html/html5_webstorage.asp) instead of cookies
+```javascript
 // Store
 localStorage.setItem("lastname", "Smith");
 // Retrieve
 document.getElementById("result").innerHTML = localStorage.getItem("lastname");
 // Remove
 localStorage.removeItem("lastname");
+```
 
 ## Style
-The Project supports
-JQuery 2.X (https://jquery.com/)
-FontAwesome (https://fortawesome.github.io/Font-Awesome/)
+- The Project supports
+- JQuery 2.X (https://jquery.com/)
+- FontAwesome (https://fortawesome.github.io/Font-Awesome/)
 
 ## Plugins
 Implement a way to have plugins (themes and content)
